@@ -24,17 +24,16 @@ This is a Full Stack Web App made in .NET to help users track ingredients and ca
 - ASP.NET (Web API Framework)
 
 ## User Stories
-- User should be able to login/logout if they already have an account
-- User should be able to register if they do not have an account
-- User should be able to create a new showdown team
-- User should be able to choose up to six Pokemon
-- User should be able to customize stat totals, levels, move sets and held items for each Pokemon
-- User should be able view all previous teams that they created
-- User should be able to delete teams that they don’t need
-- User should be able to have all data needed to import their team to Pokemon Showdown
+- User should be able to add new ingredients
+- User should be able to add new meals
+- User should be able to add ingredients to meals, and set quantity of that ingredient
+- User should be able to retrieve information about the meal, such as ingredients used, ingredient quantities, and total meal  calories
+- User should be able to view existing meals and ingredients
+- User should be able to udpate ingredients (eg. change calories per gram) and meals (eg add additional ingredients)
+- User should be able to delete meals or ingredients
 
 ## Tables
-![ERD](./Calorie Tracker ERD.jpg)
+![ERD](./Calorie%20Tracker%20ERD.jpeg)
 
 ## MVP Goals
  - Users can add and update ingredients, including such information as Name and Calories Per Gram. 
