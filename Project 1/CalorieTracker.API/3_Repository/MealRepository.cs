@@ -11,6 +11,13 @@ public class MealRepository : IMealRepository
 
     //Start writing Repo CRUD operations
 
+    //Get all meals
+     public IEnumerable<Meal> GetAllMeals()
+    {
+        return _calorieTrackerContext.Meals.ToList(); 
+    }
+
+
     //Create a new Meal
      public Meal CreateNewMeal(Meal newMeal)
     {
@@ -29,6 +36,36 @@ public class MealRepository : IMealRepository
         _calorieTrackerContext.SaveChanges(); 
 
         return GetMealById(mealId); 
+    }
+
+    //List ingredients by MealId
+        //just get the meal and retrieve ingredients in another layer? 
+
+    //Delete Meal
+    public Meal DeleteMealById(int id)
+    {
+        //need null check for getMealbyid? 
+        var deleteMeal = GetMealById(id); 
+        _calorieTrackerContext.Meals.Remove(deleteMeal); 
+        _calorieTrackerContext.SaveChanges(); 
+        return deleteMeal; //does this return the info it held, or null? 
+    }
+
+    //Remove MealIngredient from the meal
+    public Meal RemoveMealIngredientByMealId(int mealId, int ingredientId)
+    {
+
+        var updateMeal = GetMealById(mealId); 
+        foreach(MealIngredient ing in updateMeal.IngredientList)
+        {
+            if(ing.IngredientWithQuantity.Id == ingredientId)
+            {
+                updateMeal.IngredientList.Remove(ing); 
+            }
+        }
+
+        return updateMeal; 
+
     }
 
     //Get Meal By Id

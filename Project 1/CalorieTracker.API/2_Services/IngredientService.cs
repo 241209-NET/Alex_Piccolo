@@ -40,7 +40,11 @@ public class IngredientService : IIngredientService
         return _ingredientRepository.GetIngredientByName(name); 
      }
 
-    //Delete Ingredient
+      //Delete Ingredient
+      public Ingredient DeleteIngredientById(int id)
+      {
+         return _ingredientRepository.DeleteIngredientById(id); 
+      }
 
     //Note: Only the services should have the logic! They are the only thing we test! 
     //if you write utilities you need to test those too

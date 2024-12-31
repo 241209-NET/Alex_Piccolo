@@ -3,6 +3,24 @@
 <head>
 
     <title>About Me</title>
+    <style>
+        body{
+            background-color:antiquewhite;
+        }
+        h1{
+            font-size: 4em; 
+            text-align: center; 
+        }
+        img{
+            display: grid; 
+            margin: 10px;
+            border: 1px solid red;
+        }
+        .hobbies{
+            border: 2px solid black; 
+            margin: 50px;
+        }
+    </style>
 
 </head>
 
@@ -13,16 +31,27 @@
     <p>My name is Alex Piccolo. I am a software engineer with experience using Java, C++, and C#. </p>
     <p>Some of my hobbies include: </p>
     
-    <img src="C:\Users\ajpic\OneDrive\Documents\Desktop\24012-NET\Alex_Piccolo\HTML\Images\writing.jpg" 
-        alt="writing" title="Writing">Writing</img>
+    <div class="hobbies">
+        <img src="C:\Users\ajpic\OneDrive\Documents\Desktop\24012-NET\Alex_Piccolo\HTML\Images\writing.jpg" 
+            alt="writing" title="Writing"/><span style="border: 2px solid black; text-align: center">Writing</span>
+    </div>
 
-    <img src="C:\Users\ajpic\OneDrive\Documents\Desktop\24012-NET\Alex_Piccolo\HTML\Images\chess.jpg" 
-        alt="Board Games" width="275" height="183" title="Board Games">Board Games</img>
+    <div class="hobbies">
+        <img src="C:\Users\ajpic\OneDrive\Documents\Desktop\24012-NET\Alex_Piccolo\HTML\Images\chess.jpg" 
+            alt="Board Games" width="275" height="183" title="Board Games"></img>
+    </div>
 
-    <img src="C:\Users\ajpic\OneDrive\Documents\Desktop\24012-NET\Alex_Piccolo\HTML\Images\videogames.jpg" 
-        alt="Video Games" title="Video Games">Video Games</img>
+    <div class="hobbies">
+        <img src="C:\Users\ajpic\OneDrive\Documents\Desktop\24012-NET\Alex_Piccolo\HTML\Images\videogames.jpg" 
+            alt="Video Games" title="Video Games">Video Games</img>
+    </div>
+    <div id="img-div"></div>
 
+    <button onclick="buttonHandler()">Alex's Button</button>
+    <button id="seymour-btn" onclick="seymourButton()">Click me Seymour</button>
+    <button onclick="specialButton()">The "Special" Button</button>
 
+    <script src="index.js"></script>
 </body>
 
 <footer>

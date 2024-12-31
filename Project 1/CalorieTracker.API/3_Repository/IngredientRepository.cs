@@ -52,4 +52,14 @@ public class IngredientRepository : IIngredientRepository
         return _calorieTrackerContext.Ingredients.Where(ing => ing.Name.Contains(name)).ToList(); 
     }
 
+    //Delete Ingredient
+    public Ingredient DeleteIngredientById(int id)
+    {
+        //need null check for getingredientbyid? 
+        var deleteIngredient = GetIngredientById(id); 
+        _calorieTrackerContext.Ingredients.Remove(deleteIngredient); 
+        _calorieTrackerContext.SaveChanges(); 
+        return deleteIngredient; //does this return the info it held, or null? 
+    }
+
 }

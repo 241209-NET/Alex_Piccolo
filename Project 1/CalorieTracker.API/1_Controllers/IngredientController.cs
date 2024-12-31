@@ -60,12 +60,14 @@ public class IngredientController : ControllerBase
 
     //delete ingredient by id
     //Need to add related methods to service & repo
-    /*
+
     [HttpDelete("{id}")]
     public IActionResult DeleteIngredient(int id)
     {
-        var DeleteIngredient = _ingredientService.
-    }*/
+        //test that this works
+        var deleteIngredient = _ingredientService.DeleteIngredientById(id); 
+        return Ok(deleteIngredient); 
+    }
 
 
 

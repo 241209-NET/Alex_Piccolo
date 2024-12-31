@@ -17,6 +17,22 @@ public class MealController : ControllerBase
         _ingredientService = ingredientService; 
     }
 
+    //get all meals
+    [HttpGet]
+    public IActionResult GetAllMeals()
+    {
+        var mealList = _mealService.GetAllMeals(); 
+        return Ok(mealList); 
+    }
+
+    //get meal by id
+    [HttpGet("{id}")]
+    public IActionResult GetMealById(int id)
+    {
+        var meal = _mealService.GetMealById(id); 
+        return Ok(meal); 
+    }
+
     //Add new meal
     [HttpPost]
     public IActionResult CreateNewMeal(Meal newMeal)
@@ -46,10 +62,36 @@ public class MealController : ControllerBase
     
 
     //Delete what MealIngredients are in the meal
+    [HttpPut("{mealId}/{ingredientId}")]
+    public IActionResult RemoveMealIngredientById(int mealId, int ingredientId)
+    {
+        var updateMeal = _mealService.RemoveMealIngredientById(mealId, ingredientId); 
+        return Ok(updateMeal); //does it return the meal showing the ingredient has been removed? 
+    }
+
 
     //See what MealIngredients are in the meal
+    [HttpGet("ingredients/{mealId}")]
+    public IActionResult ListAllIngredients(int mealId)
+    {
+        var ingredientList = _mealService.ListAllIngredients(mealId); 
+        return Ok(ingredientList); 
+    }
 
     //retrieve calories of all MealIngredients in the meal
+    [HttpGet("total/{id}")]
+    public IActionResult GetMealTotalCalories(int id)
+    {
+        double totalCal = _mealService.GetMealTotalCalories(id); 
+        return Ok(totalCal); 
+    }
 
     //delete meals
+     [HttpDelete("{id}")]
+    public IActionResult DeleteMeal(int id)
+    {
+        //test that this works
+        var deleteMeal = _mealService.DeleteMealById(id); 
+        return Ok(deleteMeal); 
+    }
 }

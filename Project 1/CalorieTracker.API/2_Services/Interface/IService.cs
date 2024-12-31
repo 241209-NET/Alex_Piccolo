@@ -10,12 +10,19 @@ public interface IIngredientService
     Ingredient UpdateIngredientById(Ingredient updateIngredient); 
      public Ingredient GetIngredientById(int id); 
      IEnumerable<Ingredient> GetIngredientByName(string name); 
+
+     Ingredient DeleteIngredientById(int id); 
 }
 
 public interface IMealService
 {
+    IEnumerable<Meal> GetAllMeals(); 
     Meal GetMealById(int id); 
+    IEnumerable<MealIngredient> ListAllIngredients(int mealId);
     Meal AddIngredientsToMeal(MealIngredient addMealIngredient, int mealId); 
-    Meal CreateNewMeal(Meal newMeal); 
-    //include all the operations you want to have in ther service layer
+    Meal RemoveMealIngredientById(int mealId, int ingredientId);    Meal CreateNewMeal(Meal newMeal); 
+    double GetMealTotalCalories(int mealId); 
+    Meal DeleteMealById(int id); 
+
+    //include all the operations you want to have in the service layer
 }
