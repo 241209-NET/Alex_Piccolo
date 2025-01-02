@@ -1,5 +1,7 @@
 using CalorieTracker.API.Data;
 using CalorieTracker.API.Model;
+using Microsoft.EntityFrameworkCore; 
+//using System.Data.Entity.Core.EntityClient; 
 
 namespace CalorieTracker.API.Repository; 
 
@@ -14,7 +16,8 @@ public class MealRepository : IMealRepository
     //Get all meals
      public IEnumerable<Meal> GetAllMeals()
     {
-        return _calorieTrackerContext.Meals.ToList(); 
+        return _calorieTrackerContext.Meals
+            .Include(m => m.IngredientList).ThenInclude(ingList => ingList.IngredientWithQuantity).ToList(); 
     }
 
 
@@ -56,22 +59,36 @@ public class MealRepository : IMealRepository
     {
 
         var updateMeal = GetMealById(mealId); 
+
+        for(int i = 0; i < updateMeal.IngredientList.Count; i++)
+        {
+            if(updateMeal.IngredientList[i].Id == ingredientId) updateMeal.IngredientList.RemoveAt(i); 
+        }
+
+        /*
         foreach(MealIngredient ing in updateMeal.IngredientList)
         {
-            if(ing.IngredientWithQuantity.Id == ingredientId)
+            if(ing.Id == ingredientId)
             {
                 updateMeal.IngredientList.Remove(ing); 
             }
-        }
+        }*/
+
+        _calorieTrackerContext.SaveChanges(); 
 
         return updateMeal; 
 
     }
 
-    //Get Meal By Id
+
     public Meal GetMealById(int id)
     {
-        return _calorieTrackerContext.Meals.Find(id); 
+
+        var foundMeal = _calorieTrackerContext.Meals.Include(m => m.IngredientList)
+            .ThenInclude(ingList => ingList.IngredientWithQuantity)
+            .FirstOrDefault(m => m.Id == id); 
+        return foundMeal; 
+
     }
 
 }
